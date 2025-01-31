@@ -2,6 +2,7 @@ import { Inter, Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/sonner";
+import { connectToDatabase } from "@/service/mongo";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,7 +20,9 @@ export const metadata = {
   description: "An educational platform",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  const conn =await connectToDatabase();
+
   return (
     <html lang="en">
       <body
